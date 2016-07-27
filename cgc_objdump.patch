@@ -1,0 +1,18 @@
+--- /home/cgc/binutils/opcodes/i386-dis.c	2016-07-07 11:21:34.064769944 -0400
++++ /home/cgc/binutils/opcodes/i386-dis-patched.c	2016-07-08 11:40:47.378869692 -0400
+@@ -39,6 +39,7 @@
+ #include "opintl.h"
+ #include "opcode/i386.h"
+ #include "libiberty.h"
++#include "assert.h"
+ 
+ #include <setjmp.h>
+ 
+@@ -14618,6 +14619,7 @@
+       oappend (names64[modrm.reg + add]);
+       break;
+     case bnd_mode:
++      assert (modrm.reg < (int)sizeof(names_bnd) && "Next instruction is not valid.");
+       oappend (names_bnd[modrm.reg]);
+       break;
+     case v_mode:
